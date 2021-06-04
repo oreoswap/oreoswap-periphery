@@ -9,7 +9,7 @@ import './libraries/SafeMath.sol';
 import './interfaces/IERC20.sol';
 import './interfaces/IWETH.sol';
 
-contract                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        OreoswapV1Router02 is IOreoswapV1Router02 {
+contract OreoswapV1Router02 is IOreoswapV1Router02 {
     using SafeMath for uint;
 
     address public immutable override factory;
