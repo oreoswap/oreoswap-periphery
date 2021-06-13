@@ -17,10 +17,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-pragma solidity =>0.6.2;
-
-/* This could be changed to WBNB
-   since we are deploying on BSC */
+pragma solidity >=0.6.2;
    
 contract WBNB {
     string public name     = "Wrapped BNB";
@@ -32,7 +29,7 @@ contract WBNB {
     event  Deposit(address indexed dst, uint wad);
     event  Withdrawal(address indexed src, uint wad);
 
-    mapping (address => uint)                       public  balanceOf;
+    mapping (address => uint) public  balanceOf;
     mapping (address => mapping (address => uint))  public  allowance;
 
     receive() external payable {
@@ -42,10 +39,10 @@ contract WBNB {
         balanceOf[msg.sender] += msg.value;
         emit Deposit(msg.sender, msg.value);
     }
-    function withdraw(uint wad) public {
+    function withdraw(uint wad) public{
         require(balanceOf[msg.sender] >= wad);
         balanceOf[msg.sender] -= wad;
-        msg.sender.transfer(wad);
+        payable(msg.sender).transfer(wad); //Added payable keyword
         emit Withdrawal(msg.sender, wad);
     }
 
@@ -69,7 +66,7 @@ contract WBNB {
     {
         require(balanceOf[src] >= wad);
 
-        if (src != msg.sender && allowance[src][msg.sender] != uint(-1)) {
+        if (src != msg.sender && allowance[src][msg.sender] != uint(int(-1))) {
             require(allowance[src][msg.sender] >= wad);
             allowance[src][msg.sender] -= wad;
         }
