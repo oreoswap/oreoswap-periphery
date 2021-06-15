@@ -1,5 +1,5 @@
 /**
- *Submitted for verification at BNBerscan.io on 2017-12-12
+ *Submitted for verification at bscscan.com on 2017-12-12
 */
 
 // Copyright (C) 2015, 2016, 2017 Dapphub
