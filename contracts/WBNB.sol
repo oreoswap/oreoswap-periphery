@@ -1,5 +1,5 @@
 /**
- *Submitted for verification at Etherscan.io on 2017-12-12
+ *Submitted for verification at bscscan.com on 2017-12-12
 */
 
 // Copyright (C) 2015, 2016, 2017 Dapphub
@@ -17,14 +17,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-pragma solidity =0.6.6;
-
-/* This could be changed to WBNB
-   since we are deploying on BSC */
+pragma solidity >=0.6.2;
    
-contract WETH {
-    string public name     = "Wrapped Ether";
-    string public symbol   = "WETH";
+contract WBNB {
+    string public name     = "Wrapped BNB";
+    string public symbol   = "WBNB";
     uint8  public decimals = 18;
 
     event  Approval(address indexed src, address indexed guy, uint wad);
@@ -32,7 +29,7 @@ contract WETH {
     event  Deposit(address indexed dst, uint wad);
     event  Withdrawal(address indexed src, uint wad);
 
-    mapping (address => uint)                       public  balanceOf;
+    mapping (address => uint) public  balanceOf;
     mapping (address => mapping (address => uint))  public  allowance;
 
     receive() external payable {
@@ -42,10 +39,10 @@ contract WETH {
         balanceOf[msg.sender] += msg.value;
         emit Deposit(msg.sender, msg.value);
     }
-    function withdraw(uint wad) public {
+    function withdraw(uint wad) public{
         require(balanceOf[msg.sender] >= wad);
         balanceOf[msg.sender] -= wad;
-        msg.sender.transfer(wad);
+        payable(msg.sender).transfer(wad); //Added payable keyword
         emit Withdrawal(msg.sender, wad);
     }
 
@@ -69,7 +66,7 @@ contract WETH {
     {
         require(balanceOf[src] >= wad);
 
-        if (src != msg.sender && allowance[src][msg.sender] != uint(-1)) {
+        if (src != msg.sender && allowance[src][msg.sender] != uint(int(-1))) {
             require(allowance[src][msg.sender] >= wad);
             allowance[src][msg.sender] -= wad;
         }
@@ -118,7 +115,7 @@ these rights or asking you to surrender the rights.  Therefore, you have
 certain responsibilities if you distribute copies of the software, or if
 you modify it: responsibilities to respect the freedom of others.
 
-  For example, if you distribute copies of such a program, whether
+  For example, if you distribute copies of such a program, whBNBer
 gratis or for a fee, you must pass on to the recipients the same
 freedoms that you received.  You must make sure that they, too, receive
 or can get the source code.  And you must show them these terms so they
@@ -384,17 +381,17 @@ included in conveying the object code work.
   A "User Product" is either (1) a "consumer product", which means any
 tangible personal property which is normally used for personal, family,
 or household purposes, or (2) anything designed or sold for incorporation
-into a dwelling.  In determining whether a product is a consumer product,
+into a dwelling.  In determining whBNBer a product is a consumer product,
 doubtful cases shall be resolved in favor of coverage.  For a particular
 product received by a particular user, "normally used" refers to a
 typical or common use of that class of product, regardless of the status
 of the particular user or of the way in which the particular user
 actually uses, or expects or is expected to use, the product.  A product
-is a consumer product regardless of whether the product has substantial
+is a consumer product regardless of whBNBer the product has substantial
 commercial, industrial or non-consumer uses, unless such uses represent
 the only significant mode of use of the product.
 
-  "Installation Information" for a User Product means any methods,
+  "Installation Information" for a User Product means any mBNBods,
 procedures, authorization keys, or other information required to install
 and execute modified versions of a covered work in that User Product from
 a modified version of its Corresponding Source.  The information must
@@ -562,7 +559,7 @@ License of the Program or a work on which the Program is based.  The
 work thus licensed is called the contributor's "contributor version".
 
   A contributor's "essential patent claims" are all patent claims
-owned or controlled by the contributor, whether already acquired or
+owned or controlled by the contributor, whBNBer already acquired or
 hereafter acquired, that would be infringed by some manner, permitted
 by this License, of making, using, or selling its contributor version,
 but do not include claims that would be infringed only as a
@@ -626,7 +623,7 @@ otherwise be available to you under applicable patent law.
 
   12. No Surrender of Others' Freedom.
 
-  If conditions are imposed on you (whether by court order, agreement or
+  If conditions are imposed on you (whBNBer by court order, agreement or
 otherwise) that contradict the conditions of this License, they do not
 excuse you from the conditions of this License.  If you cannot convey a
 covered work so as to satisfy simultaneously your obligations under this

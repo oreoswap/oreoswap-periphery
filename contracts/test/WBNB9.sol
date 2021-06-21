@@ -1,3 +1,4 @@
+
 // Copyright (C) 2015, 2016, 2017 Dapphub
 
 // This program is free software: you can redistribute it and/or modify
@@ -13,11 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-pragma solidity =0.6.6;
+// SPDX-License-Identifier: GPL-2.0-or-later
+pragma solidity >=0.6.2;
 
-contract WETH9 {
-    string public name     = "Wrapped Ether";
-    string public symbol   = "WETH";
+
+contract WBNB9 {
+    string public name     = "Wrapped BNB";
+    string public symbol   = "WBNB";
     uint8  public decimals = 18;
 
     event  Approval(address indexed src, address indexed guy, uint wad);
@@ -35,10 +38,10 @@ contract WETH9 {
         balanceOf[msg.sender] += msg.value;
         emit Deposit(msg.sender, msg.value);
     }
-    function withdraw(uint wad) public {
+    function withdraw(uint wad) public payable { //added payable keyword
         require(balanceOf[msg.sender] >= wad, "");
         balanceOf[msg.sender] -= wad;
-        msg.sender.transfer(wad);
+        payable(msg.sender).transfer(wad); //added payable keyword to compatible with current SOLC version
         emit Withdrawal(msg.sender, wad);
     }
 
@@ -62,7 +65,7 @@ contract WETH9 {
     {
         require(balanceOf[src] >= wad, "");
 
-        if (src != msg.sender && allowance[src][msg.sender] != uint(-1)) {
+        if (src != msg.sender && allowance[src][msg.sender] != 0) {
             require(allowance[src][msg.sender] >= wad, "");
             allowance[src][msg.sender] -= wad;
         }
@@ -387,7 +390,7 @@ is a consumer product regardless of whether the product has substantial
 commercial, industrial or non-consumer uses, unless such uses represent
 the only significant mode of use of the product.
 
-  "Installation Information" for a User Product means any methods,
+  "Installation Information" for a User Product means any mBNBods,
 procedures, authorization keys, or other information required to install
 and execute modified versions of a covered work in that User Product from
 a modified version of its Corresponding Source.  The information must
