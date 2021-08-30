@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.6.2;
+pragma solidity ^0.8.0;
 
 import './IOreoswapV1Router01.sol';
 
@@ -12,6 +12,7 @@ interface IOreoswapV1Router02 is IOreoswapV1Router01 {
         address to,
         uint deadline
     ) external returns (uint amountBNB);
+
     function removeLiquidityBNBWithPermitSupportingFeeOnTransferTokens(
         address token,
         uint liquidity,
@@ -29,12 +30,14 @@ interface IOreoswapV1Router02 is IOreoswapV1Router01 {
         address to,
         uint deadline
     ) external;
+
     function swapExactBNBForTokensSupportingFeeOnTransferTokens(
         uint amountOutMin,
         address[] calldata path,
         address to,
         uint deadline
     ) external payable;
+    
     function swapExactTokensForBNBSupportingFeeOnTransferTokens(
         uint amountIn,
         uint amountOutMin,

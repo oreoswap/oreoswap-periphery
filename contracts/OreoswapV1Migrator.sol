@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.6.2;
+pragma solidity ^0.8.0;
 
 //This was not working. IDE could not import file. So I added the library from @uniswap library using:
         //   yarn add @uniswap/lib
